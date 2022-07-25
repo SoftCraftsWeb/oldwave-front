@@ -3,6 +3,7 @@
 .pnp.js
 /coverage
 /build
+/src/main.jsx
 .idea
 .DS_Store
 .env
