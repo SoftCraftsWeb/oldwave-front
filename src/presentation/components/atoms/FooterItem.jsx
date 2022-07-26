@@ -6,7 +6,7 @@ export default function FooterItem({ title, items, sm = false }) {
       <div className='hidden md:block w-full px-4'>
         <h2
           className='title-font font-black tracking-widest text-xl mb-3 text-primary-700'
-          dangerouslySetInnerHTML={{ __html: title }}
+          dangerouslySetInnerHTML={{ __html: title }} // eslint-disable-line react/no-danger
         />
         <nav className='list-none mb-10'>
           {items.map((item) => (
@@ -29,7 +29,7 @@ export default function FooterItem({ title, items, sm = false }) {
                   ? 'font-semibold text-md text-gray-700'
                   : 'font-black  text-xl text-primary-700'
               }`}
-              dangerouslySetInnerHTML={{ __html: title }}
+              dangerouslySetInnerHTML={{ __html: title }} // eslint-disable-line react/no-danger
             />
           </div>
           <div className='collapse-content pb-0'>

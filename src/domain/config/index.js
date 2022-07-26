@@ -1,5 +1,6 @@
 import routes from 'domain/config/routes';
 import footer from 'domain/config/footer';
+import banners from 'domain/config/banners';
 
 export default {
   statics: process.env.REACT_APP_CV_STATICS,
@@ -9,4 +10,5 @@ export default {
     instagram: process.env.REACT_APP_INSTAGRAM_URL,
   },
   footer,
+  banners,
 };
