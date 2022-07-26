@@ -26,20 +26,18 @@ export default function Sidebar() {
           ))}
         </div>
         <div className='flex self-center gap-2'>
-          {Object.keys(config.social_networks).map((network) => {
-            return (
-              <a
-                className='h-10 w-10 cursor-pointer transform hover:scale-105'
-                key={network}
-                href={config.social_networks[network]}
-              >
-                <img
-                  alt={network}
-                  src={`${config.statics}statics/icons/icon-${network}.svg`}
-                />
-              </a>
-            );
-          })}
+          {Object.keys(config.social_networks).map((network) => (
+            <a
+              className='h-10 w-10 cursor-pointer transform hover:scale-105'
+              key={network}
+              href={config.social_networks[network]}
+            >
+              <img
+                alt={network}
+                src={`${config.statics}statics/icons/icon-${network}.svg`}
+              />
+            </a>
+          ))}
         </div>
       </ul>
     </div>
