@@ -7,9 +7,9 @@ export default function ClientLayout({ children }) {
   return (
     <div className='drawer text-gray-700'>
       <input id='sidebar' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content !transform-none flex flex-col min-h-screen'>
+      <div className='drawer-content min-h-screen'>
         <Navbar />
-        <div className='flex flex-col h-full'>{children}</div>
+        <div className='flex w-full overflow-y-scroll'>{children}</div>
         <Footer />
       </div>
       <Sidebar />

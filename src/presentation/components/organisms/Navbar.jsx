@@ -64,13 +64,17 @@ const Navbar = () => (
       </div>
     </div>
     <div className='bg-primary-700 h-16 flex items-center px-4 md:px-16 gap-2'>
-      <div className='rounded-full items-center flex gap-3 bg-white px-4 py-1 text-sm text-gray-200 p-1 cursor-pointer w-full'>
+      <div className='relative rounded-full items-center flex gap-3 bg-white px-4 py-1 text-sm text-gray-500 p-1 cursor-pointer w-full'>
+        <input
+          type='text'
+          className='relative border-0 h-full w-full ml-6 focus:outline-0 hover:outline-0 active:outline-0'
+          placeholder='Estoy Buscando...'
+        />
         <img
           alt='search'
-          className='h-4 w-4'
+          className='h-4 w-4 absolute'
           src={`${config.statics}statics/icons/icon-search-bar.svg`}
         />
-        Estoy Buscando...
       </div>
       <div className='hidden md:block duration-150 ease-in-out hover:scale-105 rounded-full bg-transparent border text-white border-white py-1 text-sm cursor-pointer'>
         <span className='px-4'>Buscar</span>

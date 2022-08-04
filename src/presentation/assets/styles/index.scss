@@ -13,7 +13,7 @@
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply text-gray-700
@@ -22,4 +22,62 @@ body {
 .logo {
   width: 122px;
   height: 89px;
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+}
+
+.title {
+  font: normal normal 600 35px/53px Poppins;
+  letter-spacing: 0;
+  color: #772CE8;
+  opacity: 1;
+}
+
+.speech-bubble {
+  @apply bg-primary-700 text-white relative w-24 h-24 border border-white rounded-full;
+  word-wrap: break-word;
+  margin-bottom: 12px;
+  line-height: 24px;
+  position: relative;
+
+  &:before {
+     content: "";
+     position: absolute;
+     bottom: -5%;
+     height: 25px;
+     --tw-bg-opacity: 1;
+     background-color: rgb(119 44 232 / var(--tw-bg-opacity));
+     left: 4px;
+     width: 20px;
+     transform: rotate(44deg);
+     border-bottom-right-radius: 20px 30px;
+   }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: -18%;
+    width: 26px;
+    bottom: 1%;
+    border-color: white;
+    height: 25px;
+    background-color: #fffdfd;
+    border-bottom-right-radius: 100%;
+    transform: rotate(43deg);
+  }
+
+  & > * > .text-4xl {
+    line-height: 0;
+  }
+
+  & > div {
+    margin-top: 10px;
+  }
+}
+
+.text-xss {
+  font-size: 0.5rem;
+  line-height: 1rem;
 }
