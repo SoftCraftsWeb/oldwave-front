@@ -163,3 +163,23 @@ body {
     @apply bg-secondary-700;
   }
 }
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+  position:relative;
+  cursor: none;
+  &:hover > .img-magnifier-glass {
+    display: block;
+    position: absolute;
+  }
+}
+
+.img-magnifier-glass {
+  display: none;
+  @apply border-gray-700 border-2 absolute;
+  border-radius: 50%;
+  cursor: none;
+  width: 100px;
+  height: 100px;
+}
