@@ -1,6 +1,7 @@
 import routes from 'domain/config/routes';
 import footer from 'domain/config/footer';
 import banners from 'domain/config/banners';
+import categories from 'domain/config/categories';
 
 export default {
   statics: process.env.REACT_APP_CV_STATICS,
@@ -11,4 +12,5 @@ export default {
   },
   footer,
   banners,
+  categories,
 };

@@ -3,7 +3,7 @@ import React from 'react';
 export default function FooterItem({ title, items, sm = false }) {
   return (
     <div>
-      <div className='hidden md:block w-full px-4'>
+      <div className='hidden xl:block w-full px-4'>
         <h2
           className='title-font font-black tracking-widest text-xl mb-3 text-primary-700'
           dangerouslySetInnerHTML={{ __html: title }} // eslint-disable-line react/no-danger
@@ -19,7 +19,7 @@ export default function FooterItem({ title, items, sm = false }) {
         </nav>
       </div>
 
-      <div className='block md:hidden w-full px-4'>
+      <div className='block xl:hidden w-full px-4'>
         <div className='collapse collapse-arrow'>
           <input type='checkbox' />
           <div className='collapse-title border-b border-b-gray-200'>
