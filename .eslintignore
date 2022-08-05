@@ -3,12 +3,14 @@
 .pnp.js
 /coverage
 /build
+/src/main.jsx
 .idea
 .DS_Store
 .env
 .env.development.local
 .env.test.local
 .env.production.local
+tailwind.config.js
 
 npm-debug.log*
 yarn-debug.log*
