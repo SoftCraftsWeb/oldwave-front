@@ -63,7 +63,7 @@ const Navbar = () => (
         </div>
       </div>
     </div>
-    <div className='dropdown'>
+    <div className='lg:dropdown'>
       <div className='bg-primary-700 h-16 flex items-center px-4 md:px-16 gap-2'>
         <div className='relative rounded-full items-center flex gap-5 bg-white px-4 py-1 text-sm text-gray-500 p-1 cursor-pointer w-full'>
           <input
@@ -75,7 +75,7 @@ const Navbar = () => (
           <label
             htmlFor='menu'
             tabIndex='-1'
-            className='flex gap-2 cursor-pointer text-primary-700 px-4  border-gray-200 border-l-2 w-64 flex justify-center items-center'
+            className='hidden lg:flex gap-2 cursor-pointer text-primary-700 px-4  border-gray-200 border-l-2 w-64 flex justify-center items-center'
           >
             <input type='text' className='hidden' id='menu' />
             Todas las categorias
@@ -106,7 +106,10 @@ const Navbar = () => (
           </div>
         </div>
       </div>
-      <div tabIndex='-1' className='dropdown-content menu w-full px-16'>
+      <div
+        tabIndex='-1'
+        className='dropdown-content menu w-full px-16 hidden lg:flex '
+      >
         <div className='p-8 gap-4 shadow bg-white rounded-box grid grid-cols-4'>
           <div className='border-r border-gray-200 gap-3 flex flex-col'>
             <h1 className='w-full text-md font-semibold uppercase text-primary-700'>
