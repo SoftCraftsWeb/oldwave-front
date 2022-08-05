@@ -3,6 +3,8 @@ import { RenderRoutes } from 'domain/helpers/routes';
 import config from 'domain/config';
 import { NotFoundPage, HomePage } from 'presentation/pages';
 import ClientLayout from 'presentation/layouts/ClientLayout';
+import ResultsPage from 'presentation/pages/ResultsPage';
+import ShowItemPage from 'presentation/pages/ShowItemPage';
 
 function ClientRoutes({ routes }) {
   return (
@@ -22,6 +24,18 @@ export default {
       key: 'DASHBOARD',
       exact: true,
       element: HomePage,
+    },
+    {
+      path: config.routes.auth.items.path,
+      key: 'ITEMS',
+      exact: true,
+      element: ResultsPage,
+    },
+    {
+      path: config.routes.auth.items.routes.show.path,
+      key: 'ITEM_SHOW',
+      exact: true,
+      element: ShowItemPage,
     },
     {
       path: '*',
