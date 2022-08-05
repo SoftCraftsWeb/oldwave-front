@@ -1,21 +1,52 @@
-name: Node.js CI
+name: Deploy project to AWS CloudFront
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
+    
 jobs:
-  build:
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name : Using Node.Js 16
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 16
           cache: "npm"
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm run lint
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Build Static Website
+        run: npm run build --if-present
+
+      - name: Deploy
+        uses: reggionick/s3-deploy@v3
+        with:
+          folder: build
+          bucket: ${{ secrets.S3_BUCKET }}
+          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          invalidation: /
+          delete-removed: true
+          no-cache: true
+          private: true
+          filesToInclude: ".*/*,*/*,**"
