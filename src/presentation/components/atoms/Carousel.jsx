@@ -4,18 +4,22 @@ import config from 'domain/config';
 const Carousel = (props) => {
   const { children, infiniteLoop, height, sm } = props;
 
-  const [show, setShow] = useState(
-    window.innerWidth < 1024 ? (window.innerWidth < 768 ? sm ?? 2 : 3) : 6
-  );
+  function getItemsByWindow() {
+    function mdSizes() {
+      return window.innerWidth < 768 ? sm ?? 2 : 3;
+    }
+
+    return window.innerWidth < 1024 ? mdSizes() : 6;
+  }
+
+  const [show, setShow] = useState(getItemsByWindow());
 
   useEffect(() => {
     detectWindowSize();
   }, []);
 
   function detectWindowSize() {
-    setShow(
-      window.innerWidth < 1024 ? (window.innerWidth < 768 ? sm ?? 2 : 3) : 6
-    );
+    setShow(getItemsByWindow());
   }
 
   const [currentIndex, setCurrentIndex] = useState(infiniteLoop ? show : 0);

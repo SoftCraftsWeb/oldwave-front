@@ -248,15 +248,9 @@ export default function ResultsPage() {
       </div>
       <div className='flex flex-col justify-center items-center w-full'>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 self-center'>
-          {PRODUCTS.map((product) => {
-            return (
-              <Card
-                key={uuidv4()}
-                className='px-10 md:px-0'
-                product={product}
-              />
-            );
-          })}
+          {PRODUCTS.map((product) => (
+            <Card key={uuidv4()} className='px-10 md:px-0' product={product} />
+          ))}
         </div>
       </div>
     </div>

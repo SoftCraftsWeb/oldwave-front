@@ -8,7 +8,7 @@ export function evaluateValue(original, discount) {
   return (original - original * discount).toFixed(2);
 }
 
-export const formatter = function (amount) {
+export function formatter(amount) {
   const numberFormat = new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'COP',
@@ -16,9 +16,9 @@ export const formatter = function (amount) {
     maximumSignificantDigits: 2,
   });
   return `$ ${numberFormat.format(amount)}`;
-};
+}
 
-export const getPrices = function (price, discount) {
+export function getPrices(price, discount) {
   const pricesFormatted = {
     standard: 0,
     promotion: 0,
@@ -33,4 +33,4 @@ export const getPrices = function (price, discount) {
   }
 
   return pricesFormatted;
-};
+}
