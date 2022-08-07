@@ -76,9 +76,8 @@ export default function ShowItemPage() {
 
     function moveMagnifier(e) {
       e.preventDefault();
-      const pos = getCursorPos(e);
-      let x = pos.x;
-      let y = pos.y;
+      const position = getCursorPos(e);
+      let { x, y } = position;
 
       if (x > img.width - w / zoom) {
         x = img.width - w / zoom;
@@ -154,26 +153,24 @@ export default function ShowItemPage() {
               className='carousel carousel-vertical'
             >
               {product.images
-                ? product.images.map((picture) => {
-                    return (
-                      <button
-                        type='button'
-                        onClick={() => setImageSelected(picture)}
-                        key={uuidv4()}
-                        className={`carousel-item rounded-box h-32 w-32 overflow-hidden ${
-                          picture.id === imageSelected.id
-                            ? 'border-2 border-primary-700'
-                            : ''
-                        }`}
-                      >
-                        <img
-                          src={picture.url}
-                          alt={product.name}
-                          className='w-full h-full object-cover'
-                        />
-                      </button>
-                    );
-                  })
+                ? product.images.map((picture) => (
+                    <button
+                      type='button'
+                      onClick={() => setImageSelected(picture)}
+                      key={uuidv4()}
+                      className={`carousel-item rounded-box h-32 w-32 overflow-hidden ${
+                        picture.id === imageSelected.id
+                          ? 'border-2 border-primary-700'
+                          : ''
+                      }`}
+                    >
+                      <img
+                        src={picture.url}
+                        alt={product.name}
+                        className='w-full h-full object-cover'
+                      />
+                    </button>
+                  ))
                 : ''}
             </div>
             <div

@@ -74,23 +74,21 @@ export default function MultiSlider({ slides }) {
             transition: `transform ease-out ${transition}s`,
           }}
         >
-          {slides.map(({ title, img }) => {
-            return (
-              <div
-                key={uuidv4()}
-                ref={containerRef}
-                className='flex flex-col gap-2 group'
-              >
-                {React.createElement(img, {
-                  className:
-                    'h-32 w-32 w-full group-hover:text-primary-700 text-gray-700 group-hover:border-primary-700/5 group-hover:border group-hover:shadow-md group-hover:shadow-primary-700/5 rounded-xl p-4 items-center flex justify-center',
-                })}
-                <div className='group-hover:text-primary-700 text-gray-600'>
-                  {title}
-                </div>
+          {slides.map(({ title, img }) => (
+            <div
+              key={uuidv4()}
+              ref={containerRef}
+              className='flex flex-col gap-2 group'
+            >
+              {React.createElement(img, {
+                className:
+                  'h-32 w-32 w-full group-hover:text-primary-700 text-gray-700 group-hover:border-primary-700/5 group-hover:border group-hover:shadow-md group-hover:shadow-primary-700/5 rounded-xl p-4 items-center flex justify-center',
+              })}
+              <div className='group-hover:text-primary-700 text-gray-600'>
+                {title}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
       <a
