@@ -14,22 +14,20 @@ export default function HomePage() {
             ¿Qué estás buscando hoy?
           </h1>
           <Carousel infiniteLoop>
-            {config.categories.map(({ title, img }) => {
-              return (
-                <div
-                  key={uuidv4()}
-                  className='flex flex-col gap-2 group h-32 text-center items-center justify-center cursor-pointer'
-                >
-                  {React.createElement(img, {
-                    className:
-                      'h-32 w-32 w-full group-hover:text-primary-700 text-gray-700 group-hover:border-primary-700/5 group-hover:border group-hover:shadow-md group-hover:shadow-primary-700/5 rounded-xl p-4 items-center flex justify-center',
-                  })}
-                  <div className='group-hover:text-primary-700 text-gray-600'>
-                    {title}
-                  </div>
+            {config.categories.map(({ title, img }) => (
+              <div
+                key={uuidv4()}
+                className='flex flex-col gap-2 group h-32 text-center items-center justify-center cursor-pointer'
+              >
+                {React.createElement(img, {
+                  className:
+                    'h-32 w-32 w-full group-hover:text-primary-700 text-gray-700 group-hover:border-primary-700/5 group-hover:border group-hover:shadow-md group-hover:shadow-primary-700/5 rounded-xl p-4 items-center flex justify-center',
+                })}
+                <div className='group-hover:text-primary-700 text-gray-600'>
+                  {title}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </Carousel>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
@@ -122,57 +120,55 @@ export default function HomePage() {
             más recientes
           </h1>
           <Carousel sm={1} height='h-full' infiniteLoop>
-            {config.categories.map(() => {
-              return (
-                <div key={uuidv4()} className='indicator'>
-                  <span className='indicator-item indicator-start-medium'>
-                    <div className='speech-bubble items-center flex flex-col justify-center'>
-                      <div className='flex items-center'>
-                        <span className='text-md font-bold'>-</span>
-                        <h2 className='text-2xl font-bold'>30</h2>
-                        <span className='text-md font-bold self-start'>%</span>
-                      </div>
-                      <span className='text-xss'>De descuento</span>
+            {config.categories.map(() => (
+              <div key={uuidv4()} className='indicator'>
+                <span className='indicator-item indicator-start-medium'>
+                  <div className='speech-bubble items-center flex flex-col justify-center'>
+                    <div className='flex items-center'>
+                      <span className='text-md font-bold'>-</span>
+                      <h2 className='text-2xl font-bold'>30</h2>
+                      <span className='text-md font-bold self-start'>%</span>
                     </div>
-                  </span>
-                  <div className='flex flex-col mx-4 h-80 w-full bg-gray-50 rounded-lg border border-gray-200 place-items-center'>
-                    <div
-                      style={{
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-IhFYaE_2ufNBHy77Lm50vxYPW8kkSSmuw&usqp=CAU')`,
-                      }}
-                      className='h-full w-full object-contain'
-                    />
-                    <div className='h-full flex flex-col gap-2 items-center p-3 text-xs justify-between'>
-                      <div className='h-full flex flex-col gap-2 items-center p-3 text-xs'>
-                        <span>Iphone 12 Pro 64GB Negro</span>
-                        <span className='text-primary-700 font-semibold'>
-                          Apple
-                        </span>
-                        <div className='flex w-full justify-between'>
-                          <h2 className='text-gray-300 line-through'>
-                            $ 2.800.000
-                          </h2>
-                          <h2 className='text-primary-700 font-bold'>
-                            $ 2.300.000
-                          </h2>
-                        </div>
+                    <span className='text-xss'>De descuento</span>
+                  </div>
+                </span>
+                <div className='flex flex-col mx-4 h-80 w-full bg-gray-50 rounded-lg border border-gray-200 place-items-center'>
+                  <div
+                    style={{
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center',
+                      backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-IhFYaE_2ufNBHy77Lm50vxYPW8kkSSmuw&usqp=CAU')`,
+                    }}
+                    className='h-full w-full object-contain'
+                  />
+                  <div className='h-full flex flex-col gap-2 items-center p-3 text-xs justify-between'>
+                    <div className='h-full flex flex-col gap-2 items-center p-3 text-xs'>
+                      <span>Iphone 12 Pro 64GB Negro</span>
+                      <span className='text-primary-700 font-semibold'>
+                        Apple
+                      </span>
+                      <div className='flex w-full justify-between'>
+                        <h2 className='text-gray-300 line-through'>
+                          $ 2.800.000
+                        </h2>
+                        <h2 className='text-primary-700 font-bold'>
+                          $ 2.300.000
+                        </h2>
                       </div>
-                      <div className='flex items-end justify-center w-full'>
-                        <button
-                          type='button'
-                          className='py-3 font-bold w-fit px-4 text-center duration-150 ease-in-out hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
-                        >
-                          Agregar al carrito
-                        </button>
-                      </div>
+                    </div>
+                    <div className='flex items-end justify-center w-full'>
+                      <button
+                        type='button'
+                        className='py-3 font-bold w-fit px-4 text-center duration-150 ease-in-out hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
+                      >
+                        Agregar al carrito
+                      </button>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </Carousel>
         </div>
       </div>
