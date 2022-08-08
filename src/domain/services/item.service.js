@@ -47,6 +47,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -58,6 +59,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -70,6 +72,7 @@ async function rating(setIsLoading) {
       discount: 0.3,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -81,6 +84,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -92,6 +96,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -104,6 +109,7 @@ async function rating(setIsLoading) {
       discount: 0.1,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -115,6 +121,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -126,6 +133,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -138,6 +146,7 @@ async function rating(setIsLoading) {
       discount: 0.3,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -149,6 +158,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -160,6 +170,7 @@ async function rating(setIsLoading) {
       price: 20000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -172,6 +183,7 @@ async function rating(setIsLoading) {
       discount: 0.1,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -183,6 +195,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
     {
@@ -194,6 +207,7 @@ async function rating(setIsLoading) {
       price: 2000,
       currency: 'COP',
       seller: 'Pepito Perez',
+      stock: 10,
       rating: 5,
     },
   ];

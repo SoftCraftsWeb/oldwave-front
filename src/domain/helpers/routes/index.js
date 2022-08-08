@@ -2,13 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HOME_ROUTES from 'domain/helpers/routes/home-routes.js';
 
-export function RenderRoutes({
-  routes,
-  setIsLoading,
-  isLoading,
-  setIsOpenShoppingCar,
-  isOpenShoppingCar,
-}) {
+export function RenderRoutes({ routes, setIsLoading, isLoading }) {
   return (
     <Routes>
       {routes.map((route) => (
@@ -21,8 +15,6 @@ export function RenderRoutes({
               routes={route.routes}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
-              setIsOpenShoppingCar={setIsOpenShoppingCar}
-              isOpenShoppingCar={isOpenShoppingCar}
             />
           }
         />

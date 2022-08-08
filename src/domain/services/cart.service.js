@@ -17,7 +17,7 @@ export function remove(shoppingCar, item) {
 }
 
 export function list() {
-  return localStorage.getItem('shoppingCar_oldvave') ?? [];
+  return JSON.parse(localStorage.getItem('shoppingCar_oldvave')) ?? [];
 }
 
 export default {

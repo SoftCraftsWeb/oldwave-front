@@ -2,9 +2,9 @@ import services from 'domain/services';
 
 const initialState = [];
 
-export function getCar(search, paging) {
+export function getCar() {
   return async function action(dispatch) {
-    dispatch({ type: 'car', payload: services.car.list(search, paging) });
+    dispatch({ type: 'car', payload: services.car.list() });
   };
 }
 
