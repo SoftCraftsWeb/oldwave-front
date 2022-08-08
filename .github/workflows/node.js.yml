@@ -13,7 +13,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      REACT_APP_CV_STATICS: ${{ secrets.REACT_APP_STATICS }}
+      REACT_APP_STATICS: ${{ secrets.REACT_APP_STATICS }}
 
     steps:
       - name: Checkout
