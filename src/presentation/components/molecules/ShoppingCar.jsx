@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { store } from 'domain/helpers/store';
 import { v4 as uuidv4 } from 'uuid';
-import services from 'domain/services';
 import CarItem from 'presentation/components/atoms/CarItem';
-import config from 'domain/config';
+import { getCar } from 'domain/reducers/cart.reducer';
 
 export default function ShoppingCar({ isOpen, setIsOpen }) {
   const car = useSelector((state) => state.car);
-  const fetchCar = () => store.dispatch(services.car.list);
+
+  const fetchCar = () => store.dispatch(getCar());
 
   useEffect(() => {
     fetchCar();
@@ -23,43 +23,28 @@ export default function ShoppingCar({ isOpen, setIsOpen }) {
       }`}
     >
       <div
-        className={`w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform 
+        className={`right-0 absolute bg-white justify-between flex flex-col p-8 items-center min-h-screen shadow-xl delay-400 duration-500 ease-in-out transition-all transform overflow-y-auto w-80 bg-base-100 text-base-content justify-between shadow-lg rounded-2xl 
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        <div className='relative w-screen max-w-lg flex flex-col space-y-6 h-full'>
-          <div className='flex justify-between items-center p-8'>
-            <button
-              type='button'
-              onClick={setIsOpen(false)}
-              className='h-6 w-6 cursor-pointer'
-            >
-              <img
-                id='menu'
-                alt='menu'
-                className='h-4 w-4'
-                src={`${config.statics}/icons/icon-arrow-up.svg`}
-              />
-            </button>
-            <h2 className='text-2xl text-black font-bold'>
-              Carrito de Compras
-            </h2>
-          </div>
-          <div className='justify-between flex flex-col h-full'>
-            <ul className='flex flex-col text-left px-12 overflow-y-scroll'>
-              {car.map((item) => (
-                <CarItem key={uuidv4()} item={item} />
-              ))}
-            </ul>
-            <button type='button' className='btn bg-purple-600 text-white m-8'>
-              Comprar ahora
-            </button>
-          </div>
+        <h2 className='text-2xl text-black font-bold'>Carrito de Compras</h2>
+        <div className='justify-between flex flex-col h-full'>
+          <ul className='flex flex-col text-left px-12 overflow-y-scroll'>
+            {car.map((item) => (
+              <CarItem key={uuidv4()} item={item} />
+            ))}
+          </ul>
         </div>
+        <button
+          type='button'
+          className='py-3 font-bold w-fit px-4 text-center duration-150 ease-in-out hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
+        >
+          Comprar ahora
+        </button>
       </div>
       <button
         type='button'
         className='w-screen h-full cursor-pointer'
-        onClick={setIsOpen(false)}
+        onClick={() => setIsOpen(false)}
       >
         {' '}
       </button>

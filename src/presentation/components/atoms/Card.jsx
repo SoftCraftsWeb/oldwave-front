@@ -1,8 +1,14 @@
 import React from 'react';
 import { formatter, getPrices } from 'domain/helpers/currency-formatter';
+import { useSelector } from 'react-redux';
+import { store } from 'domain/helpers/store';
+import { addItem } from 'domain/reducers/cart.reducer';
 
 export default function Card({ product }) {
+  const car = useSelector((state) => state.car);
+  const addCar = () => store.dispatch(addItem(car, product));
   const prices = getPrices(product.price, product.discount);
+
   return (
     <div className='indicator'>
       {prices.promotion ? (
@@ -55,6 +61,7 @@ export default function Card({ product }) {
           <div className='flex items-end justify-center w-full'>
             <button
               type='button'
+              onClick={() => addCar()}
               className='py-3 font-bold w-fit px-4 text-center duration-150 ease-in-out hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
             >
               Agregar al carrito
