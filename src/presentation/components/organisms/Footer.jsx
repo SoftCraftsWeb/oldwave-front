@@ -10,7 +10,7 @@ export default function Footer() {
           <img
             alt='icon-safe-shopping'
             className='h-1/4 object-contain'
-            src={`${config.statics}statics/icons/icon-safe-shopping.svg`}
+            src={`${config.statics}/icons/icon-safe-shopping.svg`}
           />
           <span className='text-primary-700'>Compras Seguras</span>
         </div>
@@ -18,7 +18,7 @@ export default function Footer() {
           <img
             alt='icon-safe-shopping'
             className='h-1/4 object-contain'
-            src={`${config.statics}statics/icons/icon-payment-methods.svg`}
+            src={`${config.statics}/icons/icon-payment-methods.svg`}
           />
           <span className='text-primary-700'>Múltiples medios de pago</span>
         </div>
@@ -26,7 +26,7 @@ export default function Footer() {
           <img
             alt='icon-safe-shopping'
             className='h-1/4 object-contain'
-            src={`${config.statics}statics/icons/icon-quality.svg`}
+            src={`${config.statics}/icons/icon-quality.svg`}
           />
           <span className='text-primary-700'>Calidad Garantizada</span>
         </div>
@@ -34,7 +34,7 @@ export default function Footer() {
           <img
             alt='icon-safe-shopping'
             className='h-1/4 object-contain'
-            src={`${config.statics}statics/icons/icon-shipping.svg`}
+            src={`${config.statics}/icons/icon-shipping.svg`}
           />
           <span className='text-primary-700'>Enviós a Todo el país</span>
         </div>
@@ -70,7 +70,7 @@ export default function Footer() {
           <img
             alt='logo'
             className='logo hidden xl:block '
-            src={`${config.statics}statics/brand/oldwave-logo-vertical.png`}
+            src={`${config.statics}/brand/oldwave-logo-vertical.png`}
           />
           {config.footer.map((item, key) => {
             const data = (
@@ -96,7 +96,7 @@ export default function Footer() {
                       >
                         <img
                           alt={network}
-                          src={`${config.statics}statics/icons/icon-${network}.svg`}
+                          src={`${config.statics}/icons/icon-${network}.svg`}
                         />
                       </a>
                     ))}

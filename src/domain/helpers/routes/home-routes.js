@@ -6,10 +6,26 @@ import ClientLayout from 'presentation/layouts/ClientLayout';
 import ResultsPage from 'presentation/pages/ResultsPage';
 import ShowItemPage from 'presentation/pages/ShowItemPage';
 
-function ClientRoutes({ routes }) {
+function ClientRoutes({
+  routes,
+  isLoading,
+  setIsLoading,
+  isOpenShoppingCar,
+  setIsOpenShoppingCar,
+}) {
   return (
-    <ClientLayout>
-      <RenderRoutes routes={routes} />
+    <ClientLayout
+      setIsLoading={setIsLoading}
+      setIsOpenShoppingCar={setIsOpenShoppingCar}
+      isOpenShoppingCar={isOpenShoppingCar}
+    >
+      <RenderRoutes
+        routes={routes}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        isOpenShoppingCar={isOpenShoppingCar}
+        setIsOpenShoppingCar={setIsOpenShoppingCar}
+      />
     </ClientLayout>
   );
 }

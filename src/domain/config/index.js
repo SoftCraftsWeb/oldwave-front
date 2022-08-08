@@ -4,7 +4,8 @@ import banners from 'domain/config/banners';
 import categories from 'domain/config/categories';
 
 export default {
-  statics: process.env.REACT_APP_CV_STATICS,
+  statics: process.env.REACT_APP_STATICS,
+  api_url: process.env.REACT_APP_API_URL,
   routes,
   social_networks: {
     facebook: process.env.REACT_APP_FACEBOOK_URL,

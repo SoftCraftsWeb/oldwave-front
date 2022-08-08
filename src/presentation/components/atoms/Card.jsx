@@ -36,7 +36,7 @@ export default function Card({ product }) {
               {product.brand}
             </span>
             {prices.promotion ? (
-              <div className='flex gap-2 w-full justify-between'>
+              <div className='flex flex-col gap-2 w-full justify-between'>
                 <h2 className='text-gray-400 line-through'>
                   {formatter(prices.standard)}
                 </h2>
