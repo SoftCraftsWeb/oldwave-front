@@ -5,7 +5,7 @@ import { getRating } from 'domain/reducers/item.reducer';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-const Navbar = function ({ setIsLoading, setIsOpenShoppingCar }) {
+export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
   const rating = useSelector((state) => state.rating);
 
   useEffect(() => {
@@ -200,6 +200,4 @@ const Navbar = function ({ setIsLoading, setIsOpenShoppingCar }) {
       </div>
     </header>
   );
-};
-
-export default Navbar;
+}
