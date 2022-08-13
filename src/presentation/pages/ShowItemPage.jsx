@@ -1,52 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { formatter, evaluateValue } from 'domain/helpers/currency-formatter';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import config from 'domain/config';
+import { store } from 'domain/helpers/store';
+import { getItem } from 'domain/reducers/item.reducer';
+import { useSelector } from 'react-redux';
 
-const product = {
-  id: 1,
-  name: 'Producto prueba',
-  brand: 'Apple',
-  stock: 10,
-  images: [
-    {
-      id: '1',
-      url: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-    },
-    {
-      id: '2',
-      url: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-    },
-    {
-      id: '3',
-      url: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-    },
-    {
-      id: '4',
-      url: 'https://image.shutterstock.com/image-photo/laptop-blank-white-screen-isolated-260nw-1723121491.jpg',
-    },
-  ],
-  category_name: 'Celulares',
-  city: 'Medellín',
-  price: 2000,
-  discount: 0.3,
-  currency: 'COP',
-  seller: 'Pepito Perez',
-  description:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  seller_logo:
-    'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  rating: 4,
-  created_at: '2022-08-01',
-};
-
-export default function ShowItemPage() {
+export default function ShowItemPage({ setIsLoading }) {
   const [imageSelected, setImageSelected] = useState('');
   const navigate = useNavigate();
   const rating = [1, 2, 3, 4, 5];
+  const { item: itemId } = useParams();
+  const item = useSelector((state) => state.item);
+
+  useEffect(() => {
+    store.dispatch(getItem(itemId, setIsLoading));
+  }, []);
+
+  useEffect(() => {
+    if (!imageSelected.length) {
+      setImageSelected(item.images ? item.images[0] : {});
+      magnify('zoom', 3);
+    }
+  }, [item]);
 
   function magnify(imgID, zoom) {
     const img = document.getElementById(imgID);
@@ -110,7 +89,7 @@ export default function ShowItemPage() {
 
   useEffect(() => {
     magnify('zoom', 3);
-  }, [imageSelected]);
+  }, []);
 
   useEffect(() => {
     detectWindowSize();
@@ -122,38 +101,51 @@ export default function ShowItemPage() {
 
   window.onresize = detectWindowSize;
 
-  useEffect(() => {
-    if (!imageSelected) {
-      setImageSelected(product.images[0]);
-    }
-  }, []);
-
   return (
-    <div className=' w-full my-10 gap-10 flex flex-col justify-center px-16'>
-      <div className='flex gap-3 text-sm'>
+    <div className=' w-full my-10 gap-10 flex flex-col justify-center md:px-16'>
+      <div className='flex gap-3 text-sm px-4 xl:px-0'>
         <Link to={config.routes.auth.home.path}>Inicio</Link>
         <span>
           <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <button type='button' onClick={() => navigate(-1)}>
-          {product.category_name}
+          {item.category_name}
         </button>
         <span>
           <FontAwesomeIcon icon={faAngleRight} />
         </span>
-        <a className='font-semibold'>{product.name}</a>
+        <a className='font-semibold'>{item.name}</a>
       </div>
       <div className='w-full flex flex-col lg:flex-row gap-4 justify-between'>
-        <div className='flex flex-col gap-4 shadow border border-gray-200 rounded-xl bg-white grow p-4'>
-          <div className='flex gap-8 grow items-center justify-center'>
-            <div
-              style={{
-                height: '400px',
-              }}
-              className='carousel carousel-vertical'
-            >
-              {product.images
-                ? product.images.map((picture) => (
+        <div className='flex flex-col gap-4 md:shadow md:border md:border-gray-200 md:rounded-xl bg-white grow md:p-4'>
+          <div className='flex flex-col xl:flex-row-reverse xl:flex-row gap-4 xl:gap-8 grow items-center justify-center'>
+            <div className='menu-carousel img-magnifier-container indicator group'>
+              {item.discount ? (
+                <span className='indicator-item indicator-start-medium'>
+                  <div className='speech-bubble items-center flex flex-col justify-center'>
+                    <div className='flex items-center'>
+                      <span className='text-md font-bold'>-</span>
+                      <h2 className='text-2xl font-bold'>
+                        {item.discount * 100}
+                      </h2>
+                      <span className='text-md font-bold self-start'>%</span>
+                    </div>
+                    <span className='text-xss'>De descuento</span>
+                  </div>
+                </span>
+              ) : (
+                ''
+              )}
+              <img
+                id='zoom'
+                className='group zoom'
+                src={imageSelected.url}
+                alt={item.name}
+              />
+            </div>
+            <div className='carousel xl:carousel-vertical menu-carousel gap-2 xl:gap-0'>
+              {item.images
+                ? item.images.map((picture) => (
                     <button
                       type='button'
                       onClick={() => setImageSelected(picture)}
@@ -166,43 +158,12 @@ export default function ShowItemPage() {
                     >
                       <img
                         src={picture.url}
-                        alt={product.name}
+                        alt={item.name}
                         className='w-full h-full object-cover'
                       />
                     </button>
                   ))
                 : ''}
-            </div>
-            <div
-              style={{
-                height: '400px',
-              }}
-              className='img-magnifier-container indicator group'
-            >
-              {product.discount ? (
-                <span className='indicator-item indicator-start-medium'>
-                  <div className='speech-bubble items-center flex flex-col justify-center'>
-                    <div className='flex items-center'>
-                      <span className='text-md font-bold'>-</span>
-                      <h2 className='text-2xl font-bold'>
-                        {product.discount * 100}
-                      </h2>
-                      <span className='text-md font-bold self-start'>%</span>
-                    </div>
-                    <span className='text-xss'>De descuento</span>
-                  </div>
-                </span>
-              ) : (
-                ''
-              )}
-              <img
-                id='zoom'
-                className='group'
-                src={imageSelected.url}
-                alt={product.name}
-                width='600'
-                height='400'
-              />
             </div>
           </div>
           <div className='flex flex-col p-12 gap-4 w-full'>
@@ -210,20 +171,20 @@ export default function ShowItemPage() {
             <h5 className='font-bold text-gray-700'>
               Descripción del producto
             </h5>
-            <p>{product.description}</p>
+            <p>{item.description}</p>
             <hr />
             <h5 className='font-bold text-gray-700'>Información adicional</h5>
             <div className='grid grid-cols-4'>
               <div className='flex flex-col'>
                 <h5 className='font-bold text-gray-700'>Fecha de creación:</h5>
                 <span className='text-left text-gray-400 text-sm'>
-                  {product.created_at}
+                  {item.created_at}
                 </span>
               </div>
               <div className='flex flex-col'>
                 <h5 className='font-bold text-gray-700'>Ciudad:</h5>
                 <span className='text-left text-gray-400 text-sm'>
-                  {product.city}
+                  {item.city}
                 </span>
               </div>
             </div>
@@ -231,14 +192,12 @@ export default function ShowItemPage() {
         </div>
 
         <div className='flex flex-col gap-4 w-full lg:w-[130rem]'>
-          <div className='flex flex-col p-12 gap-3 border border-gray-200 rounded-xl shadow bg-white w-full'>
+          <div className='flex flex-col p-12 gap-3 md:border md:border-gray-200 md:rounded-xl md:shadow bg-white w-full'>
             <div className='flex flex-col gap-1 pb-4 w-full'>
               <span className='text-left font-bold text-primary-700 text-xs'>
-                {product.brand}
+                {item.brand}
               </span>
-              <h2 className='font-bold text-gray-800 text-3xl'>
-                {product.name}
-              </h2>
+              <h2 className='font-bold text-gray-800 text-3xl'>{item.name}</h2>
               <div className='flex gap-4 justify-between items-center'>
                 <div className='rating rating-sm'>
                   {rating.map((value) => (
@@ -246,28 +205,30 @@ export default function ShowItemPage() {
                       key={uuidv4()}
                       type='radio'
                       name='rating-8'
-                      defaultChecked={value === product.rating}
+                      defaultChecked={value === item.rating}
                       className='mask mask-star-2 bg-yellow-400'
                     />
                   ))}
                 </div>
-                <h5 className='font-bold text-gray-400'>143 Visualizaciones</h5>
+                <h5 className='font-bold text-gray-400'>
+                  {item.count_views} Visualizaciones
+                </h5>
               </div>
             </div>
 
-            {product.discount ? (
+            {item.discount ? (
               <div>
                 <h2 className='text-2xl text-gray-700 font-semibold'>
-                  {formatter(evaluateValue(product.price, product.discount))}
+                  {formatter(evaluateValue(item.price, item.discount))}
                 </h2>
                 <h5 className='text-left text-gray-400 text-sm line-through'>
-                  {formatter(product.price)}
+                  {formatter(item.price)}
                 </h5>
               </div>
             ) : (
               <div className='flex justify-between'>
                 <h2 className='text-2xl text-gray-700 font-semibold'>
-                  {formatter(product.price)}
+                  {formatter(item.price)}
                 </h2>
               </div>
             )}
@@ -277,7 +238,7 @@ export default function ShowItemPage() {
                   Stock Disponible:
                 </h5>
                 <span className='text-left text-gray-400 text-sm'>
-                  {product.stock}
+                  {item.stock}
                 </span>
               </span>
             </div>
@@ -294,7 +255,7 @@ export default function ShowItemPage() {
               Agregar al carrito
             </button>
           </div>
-          <div className='flex flex-col p-8 gap-3 border border-gray-200 rounded-xl bg-white shadow'>
+          <div className='flex flex-col p-8 gap-3 md:border md:border-gray-200 rounded-xl bg-white md:shadow'>
             <div className='flex flex-col gap-1'>
               <h5 className='font-bold text-gray-700 mb-6'>
                 Información sobre el vendedor
@@ -302,13 +263,13 @@ export default function ShowItemPage() {
               <div className='flex gap-4 justify-between items-center'>
                 <img
                   className='h-16 w-16 rounded-full object-contain border-primary-700 border-2'
-                  src={product.seller_logo}
-                  alt={product.seller}
+                  src={item.seller_logo}
+                  alt={item.seller}
                 />
                 <div className='flex flex-col flex-1'>
                   <h5 className='font-bold text-gray-700'>Nombre:</h5>
                   <span className='text-left text-gray-400 text-sm'>
-                    {product.seller}
+                    {item.seller}
                   </span>
                 </div>
               </div>

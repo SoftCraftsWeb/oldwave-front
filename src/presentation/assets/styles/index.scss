@@ -187,3 +187,28 @@ body {
   width: 100px;
   height: 100px;
 }
+
+@media(max-width: 1020px) {
+  .zoom, .menu-carousel {
+    max-width: 80vw;
+    min-width: 80vw;
+    object-fit: cover;
+  }
+}
+
+@media(min-width: 1020px) {
+  .menu-carousel {
+    height: 400px;
+  }
+
+  .zoom {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+@media(min-width: 1280px) {
+  .menu-carousel {
+    height: 400px;
+  }
+}

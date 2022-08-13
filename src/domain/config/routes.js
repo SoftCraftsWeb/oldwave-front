@@ -8,6 +8,10 @@ module.exports = {
       path: '/buscar',
       title: 'Buscador',
       routes: {
+        categories: {
+          path: '/buscar/:category',
+          title: 'Categoría',
+        },
         show: {
           path: '/items/:item',
           title: 'Detalle',

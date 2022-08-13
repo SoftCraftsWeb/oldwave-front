@@ -3,11 +3,13 @@ import { formatter, getPrices } from 'domain/helpers/currency-formatter';
 import { useSelector } from 'react-redux';
 import { store } from 'domain/helpers/store';
 import { addItem } from 'domain/reducers/cart.reducer';
+import { Link } from 'react-router-dom';
+import config from 'domain/config';
 
-export default function Card({ product }) {
+export default function Card({ item }) {
   const car = useSelector((state) => state.car);
-  const addCar = () => store.dispatch(addItem(car, product));
-  const prices = getPrices(product.price, product.discount);
+  const addCar = () => store.dispatch(addItem(car, item));
+  const prices = getPrices(item.price, item.discount);
 
   return (
     <div className='indicator'>
@@ -26,21 +28,23 @@ export default function Card({ product }) {
         ''
       )}
       <div className='flex flex-col mx-4 h-80 w-56 bg-gray-50 overflow-hidden rounded-lg border border-gray-200 place-items-center'>
-        <div
+        <Link
+          to={config.routes.auth.items.routes.show.path.replace(
+            ':item',
+            item.slug
+          )}
           style={{
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            backgroundImage: `url('${product.image}')`,
+            backgroundImage: `url('${item.tumpnail}')`,
           }}
           className='h-full w-full object-contain'
         />
         <div className='h-full flex flex-col gap-2 items-center p-3 text-xs justify-between'>
           <div className='h-full flex flex-col gap-2 items-center p-3 text-xs'>
-            <span>{product.name}</span>
-            <span className='text-primary-700 font-semibold'>
-              {product.brand}
-            </span>
+            <span>{item.name}</span>
+            <span className='text-primary-700 font-semibold'>{item.brand}</span>
             {prices.promotion ? (
               <div className='flex flex-col gap-2 w-full justify-between'>
                 <h2 className='text-gray-400 line-through'>
