@@ -10,10 +10,11 @@ function list(search, category, paging, setIsLoading) {
     search,
   };
 
-  return getItems({ params })
+  return service
+    .get(`/items`, { params })
     .then((response) => {
       setIsLoading(false);
-      return response;
+      return response.data;
     })
     .catch((e) => {
       setIsLoading(false);
@@ -24,201 +25,15 @@ function list(search, category, paging, setIsLoading) {
 
 async function rating(setIsLoading) {
   setIsLoading(true);
-  /** return getItems()
-   .then((response) => {
-        setIsLoading(false);
-        return response;
-      })
-   .catch((e) => {
-        setIsLoading(false);
-        const error = (e && e.message) || e.statusText;
-        return Promise.reject(error);
-      });
-   */
-
-  setIsLoading(false);
-  return [
-    {
-      id: 1,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      discount: 0.3,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 6,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 120900,
-      discount: 0.1,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 1,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      discount: 0.3,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 20000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 6,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 120900,
-      discount: 0.1,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 1,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Producto prueba',
-      brand: 'Apple',
-      image: 'https://i.blogs.es/187a45/iphone-11-pro-02/840_560.jpg',
-      city: 'Medellín',
-      price: 2000,
-      currency: 'COP',
-      seller: 'Pepito Perez',
-      stock: 10,
-      rating: 5,
-    },
-  ];
-}
-
-function getItems(params) {
   return service
-    .get(`/items`, params)
-    .then((response) => response.data)
+    .get(`items/rating/all`)
+    .then((response) => {
+      setIsLoading(false);
+      return response.data;
+    })
     .catch((e) => {
-      const error = (e && e.message) || e.statusText;
+      setIsLoading(false);
+      const error = (e && e.message) || e.message;
       return Promise.reject(error);
     });
 }
@@ -229,7 +44,7 @@ function show(id) {
     .then((response) => response.data)
     .catch((e) => {
       const error = (e && e.message) || e.statusText;
-      return Promise.reject(error);
+      return error;
     });
 }
 
