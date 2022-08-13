@@ -36,6 +36,12 @@ export default {
       element: ResultsPage,
     },
     {
+      path: config.routes.auth.items.routes.categories.path,
+      key: 'ITEMS_CATEGORY',
+      exact: true,
+      element: ResultsPage,
+    },
+    {
       path: config.routes.auth.items.routes.show.path,
       key: 'ITEM_SHOW',
       exact: true,

@@ -14,7 +14,7 @@ export default function CarItem({ item }) {
     <div className='flex justify-between mt-6 border-b border-gray-300 pb-4'>
       <img
         className='h-20 w-20 object-cover rounded'
-        src={item.image}
+        src={item.tumpnail}
         alt={item.name}
       />
       <div className='mx-3 flex flex-col'>

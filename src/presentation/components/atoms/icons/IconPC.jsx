@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const IconPc = (props) => (
+const IconPC = (props) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='46.694'
@@ -56,4 +56,4 @@ const IconPc = (props) => (
   </svg>
 );
 
-export default IconPc;
+export default IconPC;

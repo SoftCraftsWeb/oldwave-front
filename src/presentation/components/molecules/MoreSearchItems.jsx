@@ -21,7 +21,7 @@ export default function MoreSearchItems({ setIsLoading }) {
       </h1>
       <Carousel xl={5} sm={1} height='h-full' infiniteLoop>
         {rating.map((item) => (
-          <Card key={uuidv4()} product={item} />
+          <Card key={uuidv4()} item={item} />
         ))}
       </Carousel>
     </div>

@@ -4,15 +4,26 @@ import { store } from 'domain/helpers/store';
 import { getRating } from 'domain/reducers/item.reducer';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { getCategories } from 'domain/reducers/category.reducer';
+import { Link } from 'react-router-dom';
+import SearchInput from 'presentation/components/molecules/SearchInput';
 
 export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
   const rating = useSelector((state) => state.rating);
+  const categories = useSelector((state) => state.categories);
+  const car = useSelector((state) => state.car);
 
   useEffect(() => {
     if (!rating.length) {
       store.dispatch(getRating(setIsLoading));
     }
   }, []);
+
+  useEffect(() => {
+    if (!categories.length) {
+      store.dispatch(getCategories(setIsLoading));
+    }
+  }, [categories]);
 
   return (
     <header
@@ -43,11 +54,13 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
             />
           </svg>
         </label>
-        <img
-          alt='logo'
-          className='w-36 h-10'
-          src={`${config.statics}/brand/oldwave-logo-horizontal.png`}
-        />
+        <Link to={config.routes.auth.home.path}>
+          <img
+            alt='logo'
+            className='w-36 h-10'
+            src={`${config.statics}/brand/oldwave-logo-horizontal.png`}
+          />
+        </Link>
         <div className='flex gap-3 items-center'>
           <div className='hidden md:block rounded-full bg-gray-50 px-4 py-1 text-sm cursor-pointer'>
             Registrarte o iniciar sesión
@@ -75,7 +88,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
               <span className='flex absolute  h-3 w-3 top-0 right-0 -mt-1 -mr-1'>
                 <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-700 opacity-75' />
                 <span className='relative inline-flex badge-secondary badge badge-xs rounded-full h-3 w-3'>
-                  1
+                  {car.length}
                 </span>
               </span>
             </div>
@@ -83,48 +96,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
         </div>
       </div>
       <div className='lg:dropdown'>
-        <div className='bg-primary-700 h-16 flex items-center px-4 md:px-16 gap-2'>
-          <div className='relative rounded-full items-center flex gap-5 bg-white px-4 py-1 text-sm text-gray-500 p-1 cursor-pointer w-full'>
-            <input
-              type='text'
-              className='relative border-0 h-full w-full ml-6 focus:outline-0 hover:outline-0 active:outline-0'
-              placeholder='Estoy Buscando...'
-            />
-
-            <label
-              htmlFor='menu'
-              tabIndex='-1'
-              className='hidden lg:flex gap-2 cursor-pointer text-primary-700 px-4  border-gray-200 border-l-2 w-64 flex justify-center items-center'
-            >
-              <input type='text' className='hidden' id='menu' />
-              Todas las categorias
-              <img
-                id='menu'
-                alt='menu'
-                className='h-4 w-4'
-                src={`${config.statics}/icons/icon-arrow-up.svg`}
-              />
-            </label>
-            <img
-              alt='search'
-              className='h-4 w-4 absolute'
-              src={`${config.statics}/icons/icon-search-bar.svg`}
-            />
-          </div>
-          <div className='hidden md:block duration-150 ease-in-out hover:scale-105 rounded-full bg-transparent border text-white border-white py-1 text-sm cursor-pointer'>
-            <span className='px-4'>Buscar</span>
-          </div>
-          <div className='hidden md:block duration-150 ease-in-out hover:scale-105 rounded-full bg-transparent border text-white border-white py-1 text-sm cursor-pointer'>
-            <div className='px-4 flex gap-2 items-center'>
-              <img
-                alt='filter'
-                className='h-3 w-3'
-                src={`${config.statics}/icons/icon-filter.svg`}
-              />
-              <span className='pr-2'>Filtros</span>
-            </div>
-          </div>
-        </div>
+        <SearchInput />
         <div
           tabIndex='-1'
           className='dropdown-content menu w-full px-16 hidden lg:flex '
@@ -135,13 +107,17 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
                 Categorias Sugeridas
               </h1>
               <div className='flex flex-col'>
-                {config.categories.slice(0, 5).map(({ title }) => (
-                  <a
+                {categories.slice(0, 5).map(({ name, slug }) => (
+                  <Link
+                    to={config.routes.auth.items.routes.categories.path.replace(
+                      ':category',
+                      slug
+                    )}
                     key={uuidv4()}
                     className='cursor-pointer hover:font-bold truncate'
                   >
-                    {title}
-                  </a>
+                    {name}
+                  </Link>
                 ))}
               </div>
             </div>
