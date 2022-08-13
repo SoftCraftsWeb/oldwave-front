@@ -9,7 +9,7 @@ export function evaluateValue(original, discount) {
 }
 
 export function formatter(amount) {
-  const numberFormat = new Intl.NumberFormat('es-ES', {
+  const numberFormat = new Intl.NumberFormat('es', {
     style: 'currency',
     currency: 'COP',
     useGrouping: true,

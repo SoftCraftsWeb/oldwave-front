@@ -62,7 +62,7 @@ export default function MultiSlider({ slides }) {
       >
         <img
           alt='icon-arrow-right'
-          src={`${config.statics}statics/icons/icon-arrow.svg`}
+          src={`${config.statics}/icons/icon-arrow.svg`}
           className='arrow-left self-center h-full p-2'
         />
       </a>
@@ -98,7 +98,7 @@ export default function MultiSlider({ slides }) {
       >
         <img
           alt='icon-arrow-right'
-          src={`${config.statics}statics/icons/icon-arrow.svg`}
+          src={`${config.statics}/icons/icon-arrow.svg`}
           className='self-center h-full p-2'
         />
       </a>

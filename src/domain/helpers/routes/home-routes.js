@@ -6,10 +6,14 @@ import ClientLayout from 'presentation/layouts/ClientLayout';
 import ResultsPage from 'presentation/pages/ResultsPage';
 import ShowItemPage from 'presentation/pages/ShowItemPage';
 
-function ClientRoutes({ routes }) {
+function ClientRoutes({ routes, isLoading, setIsLoading }) {
   return (
-    <ClientLayout>
-      <RenderRoutes routes={routes} />
+    <ClientLayout setIsLoading={setIsLoading}>
+      <RenderRoutes
+        routes={routes}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
     </ClientLayout>
   );
 }

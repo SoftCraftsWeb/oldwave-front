@@ -12,7 +12,7 @@ export default function Sidebar() {
         <span className='logo self-center'>
           <img
             alt='logo'
-            src={`${config.statics}statics/brand/oldwave-logo-vertical.png`}
+            src={`${config.statics}/brand/oldwave-logo-vertical.png`}
           />
         </span>
         <div className='h-80 overflow-y-scroll'>
@@ -34,7 +34,7 @@ export default function Sidebar() {
             >
               <img
                 alt={network}
-                src={`${config.statics}statics/icons/icon-${network}.svg`}
+                src={`${config.statics}/icons/icon-${network}.svg`}
               />
             </a>
           ))}

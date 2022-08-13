@@ -48,6 +48,8 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ]
+    ],
+    "no-shadow": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   }
 }

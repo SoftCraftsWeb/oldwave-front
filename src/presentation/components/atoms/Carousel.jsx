@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import config from 'domain/config';
 
 const Carousel = (props) => {
-  const { children, infiniteLoop, height, sm } = props;
+  const { children, infiniteLoop, height, sm, xl } = props;
 
   function getItemsByWindow() {
     function mdSizes() {
       return window.innerWidth < 768 ? sm ?? 2 : 3;
     }
 
-    return window.innerWidth < 1024 ? mdSizes() : 6;
+    return window.innerWidth < 1024 ? mdSizes() : xl ?? 6;
   }
 
   const [show, setShow] = useState(getItemsByWindow());
@@ -124,7 +124,7 @@ const Carousel = (props) => {
         >
           <img
             alt='icon-arrow-right'
-            src={`${config.statics}statics/icons/icon-arrow.svg`}
+            src={`${config.statics}/icons/icon-arrow.svg`}
             className='arrow-left self-center h-full p-2'
           />
         </button>
@@ -163,7 +163,7 @@ const Carousel = (props) => {
         >
           <img
             alt='icon-arrow-right'
-            src={`${config.statics}statics/icons/icon-arrow.svg`}
+            src={`${config.statics}/icons/icon-arrow.svg`}
             className='self-center h-full p-2'
           />
         </button>
