@@ -107,7 +107,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
                 Categorias Sugeridas
               </h1>
               <div className='flex flex-col'>
-                {categories.slice(0, 5).map(({ name, slug }) => (
+                {categories.slice(0, 5).map(({ name, id }) => (
                   <Link
                     to={config.routes.auth.items.routes.categories.path.replace(
                       ':category',
