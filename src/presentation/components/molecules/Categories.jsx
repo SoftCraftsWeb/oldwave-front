@@ -14,11 +14,11 @@ export default function Categories() {
         ¿Qué estás buscando hoy?
       </h1>
       <Carousel infiniteLoop>
-        {categories.map(({ name, slug }) => (
+        {categories.map(({ name, slug, id }) => (
           <Link
             to={config.routes.auth.items.routes.categories.path.replace(
               ':category',
-              slug
+              id
             )}
             key={uuidv4()}
             className='flex flex-col gap-2 group h-32 text-center items-center justify-center cursor-pointer'

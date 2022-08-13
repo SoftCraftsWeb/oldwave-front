@@ -111,7 +111,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
                   <Link
                     to={config.routes.auth.items.routes.categories.path.replace(
                       ':category',
-                      slug
+                      id
                     )}
                     key={uuidv4()}
                     className='cursor-pointer hover:font-bold truncate'
