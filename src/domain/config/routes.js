@@ -16,6 +16,10 @@ module.exports = {
       path: '/mis-pedidos',
       title: 'Pedidos',
     },
+    transactions_show: {
+      path: '/mis-pedidos/:transaction',
+      title: 'Pedido',
+    },
     items: {
       path: '/buscar',
       title: 'Buscador',

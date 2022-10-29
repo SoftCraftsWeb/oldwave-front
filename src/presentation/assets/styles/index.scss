@@ -213,16 +213,12 @@ body {
   }
 }
 
-.completed {
+.approved {
   @apply text-green-600 bg-green-200;
 }
 
-.approved {
-  @apply text-yellow-600 bg-yellow-200;
-}
-
 .pending {
-  @apply text-gray-600 bg-gray-200;
+  @apply text-yellow-600 bg-yellow-200;
 }
 
 .rejected, .failed {

@@ -1,14 +1,39 @@
 import React, { useState } from 'react';
 import { getUser } from 'domain/helpers/storage';
+import services from 'domain/services';
+import { useSelector } from 'react-redux';
 
 export default function PaymentForm({ setIsLoading }) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('medellin');
   const [document, setDocument] = useState('');
-  const [documentType, setDocumentType] = useState('');
+  const [documentType, setDocumentType] = useState('cc');
+  const car = useSelector((state) => state.car);
+  const submit = async () => {
+    const response = await services.transactions.process(
+      {
+        name,
+        email,
+        city,
+        address,
+        document,
+        document_type: documentType,
+        phone,
+        car,
+      },
+      setIsLoading
+    );
+
+    if (response) {
+      localStorage.removeItem('shoppingCar_oldvave');
+      window.location.href = response;
+    } else {
+      alert('error');
+    }
+  };
 
   return (
     <>
@@ -84,6 +109,7 @@ export default function PaymentForm({ setIsLoading }) {
           <div className='w-full justify-center'>
             <button
               type='submit'
+              onClick={submit}
               className='block w-full duration-150 p-6 ease-in-out hover:scale-[1.02] rounded-lg bg-primary-700 border text-white border-white py-2 text-sm cursor-pointer'
             >
               Pagar

@@ -35,7 +35,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
     if (!categories.length) {
       store.dispatch(getCategories(setIsLoading));
     }
-  }, [categories]);
+  }, []);
 
   return (
     <header

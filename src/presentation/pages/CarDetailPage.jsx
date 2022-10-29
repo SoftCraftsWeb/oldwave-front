@@ -21,7 +21,6 @@ export default function CarDetailPage({ setIsLoading }) {
 
   useEffect(() => {
     fetchCar();
-    getTotal();
   }, []);
 
   useEffect(() => {

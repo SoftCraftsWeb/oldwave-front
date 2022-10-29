@@ -9,6 +9,7 @@ import CallbackPage from 'presentation/pages/CallbackPage';
 import CarDetailPage from 'presentation/pages/CarDetailPage';
 import { getUser } from 'domain/helpers/storage';
 import TransactionsPage from 'presentation/pages/TransactionsPage';
+import TransactionShowPage from 'presentation/pages/TransactionShowPage';
 
 function ClientRoutes({ routes, isLoading, setIsLoading }) {
   return (
@@ -44,6 +45,12 @@ export default {
       key: 'transactions',
       redirectHome: !getUser(),
       element: TransactionsPage,
+    },
+    {
+      path: config.routes.auth.transactions_show.path,
+      key: 'transactions show',
+      redirectHome: !getUser(),
+      element: TransactionShowPage,
     },
     {
       path: config.routes.auth.home.path,
