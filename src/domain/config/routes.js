@@ -4,6 +4,18 @@ module.exports = {
       path: '/',
       title: 'Inicio',
     },
+    callback: {
+      path: '/login-callback/:driver',
+      title: 'Callback Login',
+    },
+    carDetail: {
+      path: '/carrito-compras',
+      title: 'Carrito de compras',
+    },
+    transactions: {
+      path: '/mis-pedidos',
+      title: 'Pedidos',
+    },
     items: {
       path: '/buscar',
       title: 'Buscador',

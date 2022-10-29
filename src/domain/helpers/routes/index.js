@@ -1,6 +1,7 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HOME_ROUTES from 'domain/helpers/routes/home-routes.js';
+import config from 'domain/config';
 
 export function RenderRoutes({ routes, setIsLoading, isLoading }) {
   return (
@@ -10,12 +11,20 @@ export function RenderRoutes({ routes, setIsLoading, isLoading }) {
           path={route.path}
           key={route.key}
           element={
-            <route.element
-              props={route}
-              routes={route.routes}
-              setIsLoading={setIsLoading}
-              isLoading={isLoading}
-            />
+            route.redirectHome ? (
+              <Navigate
+                to={{
+                  pathname: config.routes.auth.home.path,
+                }}
+              />
+            ) : (
+              <route.element
+                props={route}
+                routes={route.routes}
+                setIsLoading={setIsLoading}
+                isLoading={isLoading}
+              />
+            )
           }
         />
       ))}
