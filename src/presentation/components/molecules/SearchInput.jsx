@@ -53,7 +53,7 @@ export default function SearchInput() {
           className='hidden lg:flex gap-2 cursor-pointer text-primary-700 px-4  border-gray-200 border-l-2 w-64 flex justify-center items-center'
         >
           <input type='text' className='hidden' id='menu' />
-          Todas las categorias
+          Todas las categorías
           <img
             id='menu'
             alt='menu'

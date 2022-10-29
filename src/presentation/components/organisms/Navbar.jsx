@@ -104,7 +104,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
           <div className='p-8 gap-4 shadow bg-white rounded-box grid grid-cols-4'>
             <div className='border-r border-gray-200 gap-3 flex flex-col'>
               <h1 className='w-full text-md font-semibold uppercase text-primary-700'>
-                Categorias Sugeridas
+                Categorías Sugeridas
               </h1>
               <div className='flex flex-col'>
                 {categories.slice(0, 5).map(({ name, id }) => (
@@ -142,7 +142,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
                   Resultados
                 </h1>
                 <div className='flex flex-col'>
-                  <a>Realiza una busqueda</a>
+                  <a>Realiza una búsqueda</a>
                 </div>
               </div>
               <div className='gap-3 flex flex-col w-full col-span-2'>

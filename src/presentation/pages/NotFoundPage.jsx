@@ -17,12 +17,12 @@ export default function NotFoundPage() {
             <h1 className='font-bold text-primary-300 text-9xl'>404</h1>
 
             <h6 className='mb-2 text-2xl font-bold text-center md:text-3xl'>
-              <span className='text-red-500'>Oops!</span> La pagina no fue
+              <span className='text-red-500'>Oops!</span> La página no fue
               encontrada
             </h6>
 
             <p className='mb-8 text-center md:text-lg'>
-              Puede que la pagina a la que estás intentado acceder no exista o
+              Puede que la página a la que estás intentado acceder no exista o
               esté en proceso de construcción
             </p>
 

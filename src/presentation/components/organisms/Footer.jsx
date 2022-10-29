@@ -28,7 +28,7 @@ export default function Footer() {
             className='h-1/4 object-contain'
             src={`${config.statics}/icons/icon-quality.svg`}
           />
-          <span className='text-primary-700'>Calidad Garantizada</span>
+          <span className='text-primary-700'>Calidad garantizada</span>
         </div>
         <div className='flex gap-4 self-center items-center lg:justify-center'>
           <img
@@ -36,7 +36,7 @@ export default function Footer() {
             className='h-1/4 object-contain'
             src={`${config.statics}/icons/icon-shipping.svg`}
           />
-          <span className='text-primary-700'>Enviós a Todo el país</span>
+          <span className='text-primary-700'>Envios a todo el país</span>
         </div>
       </div>
       <div className='w-full py-8 lg:h-36 bg-primary-700 grid grid-cols-1 lg:grid-cols-3 gap-y-8 items-center px-6'>
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
           <span className='w-full text-sm text-white hidden lg:block'>
             *Al suscribirme acepto recibir emails e información de oldwaves,
-            bajo sus Políticas de datos personales
+            bajo sus políticas de datos personales
           </span>
         </div>
       </div>
