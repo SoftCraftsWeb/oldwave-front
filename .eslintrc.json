@@ -49,6 +49,7 @@
         "aspects": ["invalidHref", "preferButton"]
       }
     ],
+    "jsx-a11y/label-has-associated-control": "off",
     "no-shadow": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "import/no-dynamic-require": "off",
