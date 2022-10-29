@@ -13,14 +13,18 @@ export default function ResultsPage({ setIsLoading }) {
   const search = useSelector((state) => state.search);
   const paging = useSelector((state) => state.paging);
   const component = useLocation().search;
-
+  const query = new URLSearchParams(component).get('q');
   useEffect(() => {
-    const query = new URLSearchParams(component).get('q');
     searchState(query);
     store.dispatch(
-      searchItems(search ?? query, category, paging, setIsLoading)
+      searchItems(
+        search.length ? search : query,
+        category,
+        paging,
+        setIsLoading
+      )
     );
-  }, []);
+  }, [query, category]);
 
   return (
     <div className='flex gap-6 w-screen my-10 flex justify-center px-16'>

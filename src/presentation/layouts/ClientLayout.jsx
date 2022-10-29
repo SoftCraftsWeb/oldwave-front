@@ -17,7 +17,11 @@ export default function ClientLayout({ children, setIsLoading }) {
         <Footer />
       </div>
       <Sidebar />
-      <ShoppingCar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ShoppingCar
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 }

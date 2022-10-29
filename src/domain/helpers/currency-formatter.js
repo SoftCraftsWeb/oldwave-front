@@ -13,7 +13,6 @@ export function formatter(amount) {
     style: 'currency',
     currency: 'COP',
     useGrouping: true,
-    maximumSignificantDigits: 2,
   });
   return `$ ${numberFormat.format(amount)}`;
 }

@@ -212,3 +212,15 @@ body {
     height: 400px;
   }
 }
+
+.approved {
+  @apply text-green-600 bg-green-200;
+}
+
+.pending {
+  @apply text-yellow-600 bg-yellow-200;
+}
+
+.rejected, .failed {
+  @apply text-red-600 bg-red-200;
+}

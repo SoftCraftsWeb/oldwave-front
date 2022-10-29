@@ -4,15 +4,24 @@ import { store } from 'domain/helpers/store';
 import { v4 as uuidv4 } from 'uuid';
 import CarItem from 'presentation/components/atoms/CarItem';
 import { getCar } from 'domain/reducers/cart.reducer';
+import { getUser } from 'domain/helpers/storage';
+import { useNavigate } from 'react-router-dom';
+import config from 'domain/config';
+import LoginForm from 'presentation/components/organisms/LoginForm';
+import EmptyCar from 'presentation/components/atoms/EmptyCar';
 
-export default function ShoppingCar({ isOpen, setIsOpen }) {
+export default function ShoppingCar({ isOpen, setIsOpen, setIsLoading }) {
   const car = useSelector((state) => state.car);
-
+  const navigate = useNavigate();
   const fetchCar = () => store.dispatch(getCar());
 
   useEffect(() => {
     fetchCar();
   }, []);
+
+  const showCarDetail = () => {
+    navigate(config.routes.auth.carDetail.path);
+  };
 
   return (
     <main
@@ -29,17 +38,25 @@ export default function ShoppingCar({ isOpen, setIsOpen }) {
         <h2 className='text-2xl text-black font-bold'>Carrito de Compras</h2>
         <div className='justify-between flex flex-col h-full'>
           <ul className='flex flex-col text-left px-12 overflow-y-scroll'>
-            {car.map((item) => (
-              <CarItem key={uuidv4()} item={item} />
-            ))}
+            {car.length ? (
+              car.map((item) => <CarItem key={uuidv4()} item={item} />)
+            ) : (
+              <EmptyCar />
+            )}
           </ul>
         </div>
-        <button
-          type='button'
-          className='py-3 font-bold w-fit px-4 text-center duration-150 ease-in-out hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
-        >
-          Comprar ahora
-        </button>
+        {getUser() ? (
+          <button
+            type='button'
+            disabled={!car.length}
+            onClick={() => showCarDetail()}
+            className='py-3 font-bold disabled:bg-primary-300 w-fit px-4 text-center duration-150 ease-in-out enabled:hover:scale-105 rounded-full bg-primary-700 border text-white border-white py-1 text-sm cursor-pointer'
+          >
+            Comprar ahora
+          </button>
+        ) : (
+          <LoginForm setIsLoading={setIsLoading} />
+        )}
       </div>
       <button
         type='button'

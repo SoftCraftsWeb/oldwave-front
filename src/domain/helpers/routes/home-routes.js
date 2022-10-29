@@ -5,6 +5,11 @@ import { NotFoundPage, HomePage } from 'presentation/pages';
 import ClientLayout from 'presentation/layouts/ClientLayout';
 import ResultsPage from 'presentation/pages/ResultsPage';
 import ShowItemPage from 'presentation/pages/ShowItemPage';
+import CallbackPage from 'presentation/pages/CallbackPage';
+import CarDetailPage from 'presentation/pages/CarDetailPage';
+import { getUser } from 'domain/helpers/storage';
+import TransactionsPage from 'presentation/pages/TransactionsPage';
+import TransactionShowPage from 'presentation/pages/TransactionShowPage';
 
 function ClientRoutes({ routes, isLoading, setIsLoading }) {
   return (
@@ -23,6 +28,30 @@ export default {
   key: 'home',
   element: ClientRoutes,
   routes: [
+    {
+      path: config.routes.auth.callback.path,
+      key: 'callback',
+      redirectHome: !!getUser(),
+      element: CallbackPage,
+    },
+    {
+      path: config.routes.auth.carDetail.path,
+      key: 'carDetail',
+      redirectHome: !getUser(),
+      element: CarDetailPage,
+    },
+    {
+      path: config.routes.auth.transactions.path,
+      key: 'transactions',
+      redirectHome: !getUser(),
+      element: TransactionsPage,
+    },
+    {
+      path: config.routes.auth.transactions_show.path,
+      key: 'transactions show',
+      redirectHome: !getUser(),
+      element: TransactionShowPage,
+    },
     {
       path: config.routes.auth.home.path,
       key: 'DASHBOARD',

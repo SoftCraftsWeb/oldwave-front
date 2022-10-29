@@ -7,11 +7,23 @@ import { v4 as uuidv4 } from 'uuid';
 import { getCategories } from 'domain/reducers/category.reducer';
 import { Link } from 'react-router-dom';
 import SearchInput from 'presentation/components/molecules/SearchInput';
+import LoginForm from 'presentation/components/organisms/LoginForm';
+import { getUser } from 'domain/helpers/storage';
+import service from 'domain/services';
 
 export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
   const rating = useSelector((state) => state.rating);
   const categories = useSelector((state) => state.categories);
   const car = useSelector((state) => state.car);
+  const user = getUser();
+
+  const logout = async () => {
+    const response = await service.auth.logout(setIsLoading);
+    if (response) {
+      sessionStorage.removeItem('logged_user');
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     if (!rating.length) {
@@ -23,7 +35,7 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
     if (!categories.length) {
       store.dispatch(getCategories(setIsLoading));
     }
-  }, [categories]);
+  }, []);
 
   return (
     <header
@@ -62,18 +74,45 @@ export default function Navbar({ setIsLoading, setIsOpenShoppingCar }) {
           />
         </Link>
         <div className='flex gap-3 items-center'>
-          <div className='hidden md:block rounded-full bg-gray-50 px-4 py-1 text-sm cursor-pointer'>
-            Registrarte o iniciar sesión
-          </div>
-
-          <div className='rounded-full hover:bg-primary-700 hover:bg-opacity-10 p-1 text-sm cursor-pointer'>
-            <img
-              alt='login'
-              className='h-6 w-6'
-              src={`${config.statics}/icons/icon-login.svg`}
-            />
-          </div>
-
+          {user ? (
+            <div className='dropdown dropdown-left dropdown-hover'>
+              <div
+                tabIndex='0'
+                className='rounded-full hover:bg-primary-700 hover:bg-opacity-10 p-1 text-sm cursor-pointer'
+              >
+                <img
+                  alt='login'
+                  className='h-6 w-6'
+                  src={`${config.statics}/icons/icon-login.svg`}
+                />
+              </div>
+              <div
+                tabIndex='0'
+                className='dropdown-content menu p-3 shadow bg-base-100 rounded-box w-64 text-sm'
+              >
+                <span className='font-bold uppercase'>{user.user.name}</span>
+                <span className='text-xs font-bold text-gray-400'>
+                  {user.user.email}
+                </span>
+                <hr className='my-3' />
+                <li>
+                  <Link
+                    to={config.routes.auth.transactions.path}
+                    className='p-2'
+                  >
+                    Mis pedidos
+                  </Link>
+                </li>
+                <li>
+                  <button type='button' onClick={logout} className='p-2'>
+                    Cerrar Sesión
+                  </button>
+                </li>
+              </div>
+            </div>
+          ) : (
+            <LoginForm setIsLoading={setIsLoading} />
+          )}
           <button
             onClick={() => setIsOpenShoppingCar(true)}
             type='button'

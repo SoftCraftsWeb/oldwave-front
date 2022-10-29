@@ -53,6 +53,7 @@
     "no-shadow": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "import/no-dynamic-require": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "no-alert": "off"
   }
 }
